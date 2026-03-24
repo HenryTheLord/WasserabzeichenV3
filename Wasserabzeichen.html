@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Variante III – Innenangriff HLF (Stufen 1–6)</title>
+<title>Wasseraufbau – Variante III</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500&display=swap');
-
   :root {
-    --rot:#C0392B;--anth:#1a1c1e;--grau:#2d3035;--linie:#3d4045;
-    --blau:#2471a3;--gruen:#1e8449;--akzent:#e67e22;--lila:#8e44ad;
-    --tuerkis:#16a085;--weiss:#ffffff;
+    --rot:#C0392B; --anthrazit:#1a1c1e; --grau:#2d3035; --linie:#3d4045;
+    --blau:#2471a3; --gruen:#1e8449; --orange:#e67e22; --lila:#8e44ad;
+    --tuerkis:#16a085; --weiss:#ffffff; --gelb:#f1c40f;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{
-    background:var(--anth);
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    background:var(--anthrazit);
     color:var(--weiss);
     font-family:'Barlow',sans-serif;
     font-size:14px;
@@ -23,7 +22,8 @@
     flex-direction:column;
   }
 
-  #start{
+  /* START */
+  #start-screen {
     flex:1;
     display:flex;
     flex-direction:column;
@@ -32,7 +32,7 @@
     padding:32px 24px;
     text-align:center;
   }
-  .badge{
+  .start-badge {
     font-family:'DM Mono',monospace;
     font-size:11px;
     letter-spacing:.15em;
@@ -40,240 +40,205 @@
     text-transform:uppercase;
     margin-bottom:10px;
   }
-  .title{
+  .start-title {
     font-family:'Barlow Condensed',sans-serif;
-    font-size:40px;
+    font-size:48px;
     font-weight:800;
     line-height:1;
     text-transform:uppercase;
     margin-bottom:6px;
   }
-  .title span{color:var(--rot);}
-  .sub{
+  .start-title span { color:var(--rot); }
+  .start-sub {
     font-family:'DM Mono',monospace;
     font-size:12px;
-    color:#777;
-    margin-bottom:32px;
+    color:#666;
+    margin-bottom:12px;
   }
-  .start-info{
-    font-family:'DM Mono',monospace;
-    font-size:11px;
-    color:#aaa;
-    margin-bottom:24px;
+  .hero-bar {
+    width:100%;
+    max-width:305px;
+    height:38px;
+    background:#000;
+    margin:0 auto 28px;
   }
-  .role-question{
+  .start-question {
     font-family:'Barlow Condensed',sans-serif;
     font-size:20px;
     font-weight:600;
-    letter-spacing:.06em;
+    letter-spacing:.05em;
     color:#aaa;
     text-transform:uppercase;
-    margin-bottom:18px;
+    margin-bottom:24px;
   }
-  .role-grid{
+  .role-grid {
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:10px;
+    gap:12px;
     max-width:480px;
     width:100%;
   }
-  .role-btn{
+  .role-btn {
     border:none;
     border-radius:8px;
-    padding:18px 10px;
+    padding:20px 12px;
     cursor:pointer;
-    transition:transform .15s,box-shadow .15s;
+    transition:transform .15s, box-shadow .15s;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:6px;
+    gap:8px;
     font-family:'Barlow Condensed',sans-serif;
     text-transform:uppercase;
     letter-spacing:.05em;
     color:#fff;
   }
-  .role-btn .icon{font-size:24px;}
-  .role-btn .name{font-size:15px;font-weight:700;}
-  .role-btn .sub{font-size:11px;opacity:.8;font-family:'Barlow',sans-serif;text-transform:none;letter-spacing:0;}
-  .role-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.45);}
-  .btn-gf{background:linear-gradient(135deg,#1a3a5c,#2471a3);}
-  .btn-at{background:linear-gradient(135deg,#6e1010,#C0392B);}
-  .btn-wt{background:linear-gradient(135deg,#0e401e,#1e8449);}
-  .btn-st{background:linear-gradient(135deg,#7a4010,#e67e22);}
-  .btn-ma{background:linear-gradient(135deg,#4a1a6e,#8e44ad);}
-  .btn-me{background:linear-gradient(135deg,#0a3830,#16a085);}
-  .btn-all{grid-column:1/-1;background:linear-gradient(135deg,#333,#555);}
+  .role-btn:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.4); }
+  .role-btn:active { transform:translateY(0); }
+  .role-btn .icon { font-size:28px; }
+  .role-btn .name { font-size:16px; font-weight:700; }
+  .role-btn .sub { font-size:11px; opacity:.75; font-weight:400; font-family:'Barlow',sans-serif; }
+  .btn-gf { background:linear-gradient(135deg,#1a3a5c,#2471a3); }
+  .btn-at { background:linear-gradient(135deg,#6e1010,#C0392B); }
+  .btn-wt { background:linear-gradient(135deg,#1a3a5c,#2471a3); }
+  .btn-st { background:linear-gradient(135deg,#7a4010,#e67e22); }
+  .btn-ma { background:linear-gradient(135deg,#4a1a6e,#8e44ad); }
+  .btn-me { background:linear-gradient(135deg,#0a3830,#16a085); }
+  .role-all-btn {
+    grid-column:1/-1;
+    background:linear-gradient(135deg,#333,#555);
+    border-radius:8px;
+    padding:14px;
+    cursor:pointer;
+    border:none;
+    color:#fff;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:16px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    transition:transform .15s;
+  }
+  .role-all-btn:hover { transform:translateY(-2px); }
 
-  #main{display:none;flex-direction:column;min-height:100vh;}
-  .topbar{
+  /* MAIN */
+  #main-screen { display:none; flex-direction:column; min-height:100vh; }
+  .topbar {
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:100;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:12px;
-    padding:8px 12px;
+    padding:12px 20px;
     background:#111315;
     border-bottom:1px solid var(--linie);
+    gap:12px;
   }
-  .top-left{display:flex;align-items:center;gap:10px;}
-  .back{
+  .topbar-left { display:flex; align-items:center; gap:12px; }
+  .back-btn {
     background:none;
     border:1px solid #444;
     color:#aaa;
-    padding:4px 10px;
+    padding:6px 12px;
     border-radius:5px;
     cursor:pointer;
     font-family:'DM Mono',monospace;
     font-size:11px;
     letter-spacing:.05em;
+    transition:border-color .15s, color .15s;
   }
-  .back:hover{border-color:#888;color:#fff;}
-  .tag-role{
+  .back-btn:hover { border-color:#888; color:#fff; }
+  .current-role-tag {
     font-family:'Barlow Condensed',sans-serif;
-    font-size:13px;
+    font-size:15px;
     font-weight:700;
     text-transform:uppercase;
-    letter-spacing:.07em;
-    padding:3px 10px;
+    letter-spacing:.08em;
+    padding:5px 14px;
     border-radius:5px;
     color:#fff;
   }
-  .tag-tank{
-    font-family:'DM Mono',monospace;
-    font-size:10px;
-    padding:3px 8px;
-    border-radius:3px;
-    color:#fff;
-    background:var(--gruen);
-  }
-  .top-mid{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-  }
-  .top-title{
+  .topbar-title {
     font-family:'Barlow Condensed',sans-serif;
-    font-size:15px;
+    font-size:18px;
+    font-weight:700;
     text-transform:uppercase;
-    letter-spacing:.05em;
     color:#aaa;
+    letter-spacing:.05em;
   }
-  .top-right{
+  .topbar-right {
     font-family:'DM Mono',monospace;
     font-size:10px;
-    color:#777;
+    color:#555;
     text-align:right;
     line-height:1.4;
   }
-
-  .content{
-    padding:14px 14px 40px;
-    max-width:820px;
+  .content {
+    padding:20px 20px 60px;
+    max-width:720px;
     margin:0 auto;
     width:100%;
   }
 
-  .block-title{
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:17px;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:#ddd;
-    margin:12px 0 6px;
-  }
-  .block-sub{
-    font-family:'DM Mono',monospace;
-    font-size:11px;
-    color:#888;
-    margin-bottom:6px;
-  }
-  .block-divider{
-    border-top:1px solid #333;
-    margin:12px 0;
-  }
-
-  .phase{margin-bottom:8px;}
-  .ph-head{
+  .phase { margin-bottom:8px; }
+  .phase-header {
     display:flex;
     align-items:center;
     gap:10px;
-    padding:8px 12px;
+    padding:10px 14px;
     background:#222428;
     border-radius:6px;
     border-left:4px solid #2a2d32;
+    cursor:default;
+    user-select:none;
+    transition:background .15s;
   }
-  .ph-head.has{cursor:pointer;border-left-color:var(--rot);}
-  .ph-head.has:hover{background:#272a2f;}
-  .ph-num{
-    font-family:'DM Mono',monospace;
-    font-size:11px;
-    color:#666;
-    min-width:28px;
-  }
-  .ph-name{
+  .phase-header.has-content { border-left-color:var(--rot); cursor:pointer; }
+  .phase-header.has-content:hover { background:#282b30; }
+  .phase-num { font-family:'DM Mono',monospace; font-size:11px; color:#555; min-width:28px; }
+  .phase-name {
     font-family:'Barlow Condensed',sans-serif;
-    font-size:15px;
+    font-size:16px;
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:.06em;
     flex:1;
-    color:#f0f0f0;
+    color:#3a3d42;
   }
-  .ph-badge{
-    font-family:'DM Mono',monospace;
-    font-size:10px;
-    color:var(--rot);
-  }
-  .chevron{
-    font-size:11px;
-    color:#aaa;
-    transition:transform .2s;
-  }
-  .ph-head.open .chevron{transform:rotate(90deg);}
-
-  .ph-body{
+  .phase-header.has-content .phase-name { color:#fff; }
+  .phase-badge { font-family:'DM Mono',monospace; font-size:10px; color:#555; }
+  .phase-header.has-content .phase-badge { color:var(--rot); }
+  .chevron { font-size:11px; color:#aaa; transition:transform .2s; }
+  .phase-header.open .chevron { transform:rotate(90deg); }
+  .phase-body {
     display:none;
     flex-direction:column;
-    gap:4px;
-    padding:4px 0 6px;
+    gap:3px;
+    padding:4px 0;
     border-left:4px solid var(--linie);
     border-radius:0 0 6px 6px;
-    background:#1c1e22;
+    background:#1e2024;
+    margin-top:2px;
   }
-  .ph-body.open{display:flex;}
+  .phase-body.open { display:flex; }
 
-  .hint{
-    font-family:'DM Mono',monospace;
-    font-size:11px;
-    color:#cfa76a;
-    padding:8px 12px;
-    margin:2px 8px 2px;
-    background:rgba(230,126,34,.08);
-    border-left:3px solid var(--akzent);
-    border-radius:4px;
-  }
-
-  .step{
+  .step-card {
     margin:0 8px;
     border-radius:5px;
-    padding:9px 12px;
+    padding:10px 14px;
     border-left:3px solid transparent;
     display:flex;
     align-items:flex-start;
-    gap:10px;
+    gap:12px;
   }
-  .s-gf{background:#1e2438;border-color:var(--blau);}
-  .s-at{background:#2a1a1a;border-color:var(--rot);}
-  .s-wt{background:#182818;border-color:var(--gruen);}
-  .s-st{background:#292015;border-color:var(--akzent);}
-  .s-ma{background:#222233;border-color:var(--lila);}
-  .s-me{background:#142524;border-color:var(--tuerkis);}
-  .s-sr{background:#26262b;border-color:#666;}
-
-  .tag{
+  .card-gf { background:#1b2b20; border-color:var(--gruen); }
+  .card-at { background:#2a1a1a; border-color:var(--rot); }
+  .card-wt { background:#1a2331; border-color:var(--blau); }
+  .card-st { background:#2a2218; border-color:var(--gelb); }
+  .card-ma { background:#22222a; border-color:var(--lila); }
+  .card-me { background:#1e2828; border-color:var(--tuerkis); }
+  .rolle-tag {
     font-family:'Barlow Condensed',sans-serif;
     font-size:11px;
     font-weight:700;
@@ -281,21 +246,19 @@
     text-transform:uppercase;
     padding:2px 8px;
     border-radius:3px;
-    color:#fff;
     flex-shrink:0;
     margin-top:1px;
+    color:#fff;
   }
-  .t-gf{background:var(--blau);}
-  .t-at{background:var(--rot);}
-  .t-wt{background:var(--gruen);}
-  .t-st{background:var(--akzent);}
-  .t-ma{background:var(--lila);}
-  .t-me{background:var(--tuerkis);}
-  .t-sr{background:#666;}
-
-  .txt{font-size:13px;color:#d0d4de;line-height:1.6;}
-  .txt strong{color:#fff;}
-  .cmd{
+  .tag-gf { background:var(--gruen); }
+  .tag-at { background:var(--rot); }
+  .tag-wt { background:var(--blau); }
+  .tag-st { background:var(--gelb); color:#222; }
+  .tag-ma { background:var(--lila); }
+  .tag-me { background:var(--tuerkis); }
+  .step-text { font-size:13px; color:#d0d4de; line-height:1.6; }
+  .step-text strong { color:#fff; }
+  .cmd {
     font-family:'DM Mono',monospace;
     font-size:11.5px;
     color:#f0c060;
@@ -303,655 +266,359 @@
     padding:2px 6px;
     border-radius:3px;
     display:inline-block;
-    margin-top:1px;
+    margin-top:2px;
+    white-space:pre-line;
   }
-  .cond{
+  .cond {
     font-family:'DM Mono',monospace;
     font-size:11px;
-    color:#e67e22;
-    background:rgba(230,126,34,.1);
+    color:#e74c3c;
+    background:rgba(231,76,60,.08);
     padding:4px 8px;
     border-radius:3px;
-    border-left:2px solid #e67e22;
-    margin-top:4px;
     display:block;
+    margin-top:4px;
+    border-left:2px solid #e74c3c;
   }
-  ol.seq{
-    list-style:none;
-    margin:4px 0 0;
-    padding:0;
-    display:flex;
-    flex-direction:column;
-    gap:3px;
+  .hint-text {
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    color:#c8a060;
+    padding:8px 14px;
+    margin:2px 8px 0;
+    background:rgba(230,126,34,.08);
+    border-left:3px solid var(--orange);
+    border-radius:4px;
   }
-  ol.seq li{
-    display:flex;
-    align-items:flex-start;
-    gap:5px;
-    font-size:12.5px;
-  }
-  .sn{
+  .footer {
+    text-align:center;
+    padding:20px;
     font-family:'DM Mono',monospace;
     font-size:10px;
-    color:#bbb;
+    color:#333;
+    letter-spacing:.06em;
+  }
+  .seq-num {
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    color:#555;
     background:rgba(255,255,255,.06);
-    padding:1px 5px;
     border-radius:3px;
+    padding:1px 5px;
+    margin-right:4px;
     flex-shrink:0;
   }
-
-  .stufe-buttons{
+  ol.seq {
+    list-style:none;
+    padding:0;
+    margin:4px 0 0;
     display:flex;
-    flex-wrap:wrap;
+    flex-direction:column;
+    gap:4px;
+  }
+  ol.seq li {
+    display:flex;
+    align-items:flex-start;
     gap:6px;
-    margin:4px 0 8px;
+    font-size:12.5px;
+    color:#c8ccd8;
   }
-  .stufe-btn{
-    border:none;
-    border-radius:4px;
-    padding:4px 8px;
-    font-family:'DM Mono',monospace;
-    font-size:10px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    cursor:pointer;
-    color:#aaa;
-    background:#222428;
-  }
-  .stufe-btn.active{
-    background:#C0392B;
-    color:#fff;
-  }
+  ol.seq li strong { color:#fff; }
 
-  .no{
-    text-align:center;
-    padding:30px 16px;
-    font-family:'Barlow Condensed',sans-serif;
-  }
-  .no .ic{font-size:32px;margin-bottom:8px;}
-  .no h2{font-size:18px;color:#666;text-transform:uppercase;margin-bottom:4px;}
-  .no p{font-size:13px;color:#555;}
-
-  .foot{
-    text-align:center;
-    padding:16px;
-    font-family:'DM Mono',monospace;
-    font-size:10px;
-    color:#444;
-    letter-spacing:.05em;
+  @media (max-width: 640px) {
+    .start-title { font-size:42px; }
+    .role-grid { grid-template-columns:repeat(2,1fr); }
+    .topbar { flex-wrap:wrap; align-items:flex-start; }
+    .topbar-title { width:100%; order:3; font-size:16px; }
+    .topbar-right { display:none; }
   }
 </style>
 </head>
 <body>
 
-<div id="start">
-  <div class="badge">Leistungsprüfung · FwDV 3 · Bayern</div>
-  <div class="title">Innenangriff<br><span>Variante III – HLF mit Tank</span></div>
-  <div class="sub">Nur Innenangriff · Wasserentnahme Oberflurhydrant · Stufen 1–6</div>
-  <div class="start-info">Ablauf Stufe 2–6, Einzel-/Truppaufgaben und Saugleitung nach Richtlinie Bayern 2010</div>
+<div id="start-screen">
+  <div class="start-badge">Leistungsprüfung · FwDV 3 · Bayern</div>
+  <div class="start-title">Wasseraufbau<br><span>Variante III</span></div>
+  <div class="start-sub">Innenangriff – Wasserentnahme aus Hydranten · Stufe 2–6</div>
+  <div class="hero-bar"></div>
 
-  <div class="role-question">Wer bist du?</div>
+  <div class="start-question">Wer bist du?</div>
   <div class="role-grid">
-    <button class="role-btn btn-gf" onclick="setRole('gf')"><span class="icon">⭐</span><span class="name">Gruppenführer</span><span class="sub">GF</span></button>
-    <button class="role-btn btn-at" onclick="setRole('at')"><span class="icon">🔴</span><span class="name">Angriffstrupp</span><span class="sub">ATF · ATM</span></button>
-    <button class="role-btn btn-wt" onclick="setRole('wt')"><span class="icon">💧</span><span class="name">Wassertrupp</span><span class="sub">WTF · WTM</span></button>
-    <button class="role-btn btn-st" onclick="setRole('st')"><span class="icon">🚧</span><span class="name">Schlauchtrupp</span><span class="sub">STF · STM</span></button>
-    <button class="role-btn btn-ma" onclick="setRole('ma')"><span class="icon">⚙️</span><span class="name">Maschinist</span><span class="sub">Ma</span></button>
-    <button class="role-btn btn-me" onclick="setRole('me')"><span class="icon">📡</span><span class="name">Melder</span><span class="sub">Me</span></button>
-    <button class="role-btn btn-all" onclick="setRole('all')"><span class="icon">👁</span><span class="name">Alle Funktionen</span><span class="sub">Gesamtablauf ansehen</span></button>
+    <button class="role-btn btn-gf" onclick="selectRole('gf')"><span class="icon">⭐</span><span class="name">Gruppenführer</span><span class="sub">GF</span></button>
+    <button class="role-btn btn-at" onclick="selectRole('at')"><span class="icon">🔴</span><span class="name">Angriffstrupp</span><span class="sub">ATF · ATM</span></button>
+    <button class="role-btn btn-wt" onclick="selectRole('wt')"><span class="icon">💧</span><span class="name">Wassertrupp</span><span class="sub">WTF · WTM</span></button>
+    <button class="role-btn btn-st" onclick="selectRole('st')"><span class="icon">🚧</span><span class="name">Schlauchtrupp</span><span class="sub">STF · STM</span></button>
+    <button class="role-btn btn-ma" onclick="selectRole('ma')"><span class="icon">⚙️</span><span class="name">Maschinist</span><span class="sub">Ma</span></button>
+    <button class="role-btn btn-me" onclick="selectRole('me')"><span class="icon">📡</span><span class="name">Melder</span><span class="sub">Me</span></button>
+    <button class="role-all-btn" onclick="selectRole('all')">👁 Alle Funktionen anzeigen</button>
   </div>
 </div>
 
-<div id="main">
+<div id="main-screen">
   <div class="topbar">
-    <div class="top-left">
-      <button class="back" onclick="goBack()">← Zurück</button>
-      <span class="tag-role" id="roleTag"></span>
-      <span class="tag-tank">HLF · mit Wassertank</span>
+    <div class="topbar-left">
+      <button class="back-btn" onclick="goBack()">← Zurück</button>
+      <span class="current-role-tag" id="role-tag"></span>
     </div>
-    <div class="top-mid">
-      <div class="top-title">Variante III · Innenangriff · Stufen 1–6</div>
-    </div>
-    <div class="top-right" id="topInfo"></div>
+    <div class="topbar-title">Variante III · Aufbau mit Tank</div>
+    <div class="topbar-right" id="topbar-info"></div>
   </div>
   <div class="content" id="content"></div>
-  <div class="foot">Leistungsprüfung „Die Gruppe im Löscheinsatz“ · Richtlinie Bayern 2010 · Variante III · Innenangriff</div>
+  <div class="footer">Variante III · nur Aufbau · Schnellangriffsverteiler · LF mit Wassertank</div>
 </div>
 
 <script>
 const ROLES = {
-  gf:{label:'Gruppenführer',short:'GF',cls:'s-gf',tag:'t-gf'},
-  at:{label:'Angriffstrupp',short:'AT',cls:'s-at',tag:'t-at'},
-  wt:{label:'Wassertrupp',short:'WT',cls:'s-wt',tag:'t-wt'},
-  st:{label:'Schlauchtrupp',short:'ST',cls:'s-st',tag:'t-st'},
-  ma:{label:'Maschinist',short:'Ma',cls:'s-ma',tag:'t-ma'},
-  me:{label:'Melder',short:'Me',cls:'s-me',tag:'t-me'},
-  sr:{label:'Schiedsrichter',short:'SR',cls:'s-sr',tag:'t-sr'}
+  gf:{label:'Gruppenführer',short:'GF',color:'#1e8449',tagClass:'tag-gf',cardClass:'card-gf'},
+  at:{label:'Angriffstrupp',short:'AT',color:'#C0392B',tagClass:'tag-at',cardClass:'card-at'},
+  wt:{label:'Wassertrupp',short:'WT',color:'#2471a3',tagClass:'tag-wt',cardClass:'card-wt'},
+  st:{label:'Schlauchtrupp',short:'ST',color:'#f1c40f',tagClass:'tag-st',cardClass:'card-st'},
+  ma:{label:'Maschinist',short:'Ma',color:'#8e44ad',tagClass:'tag-ma',cardClass:'card-ma'},
+  me:{label:'Melder',short:'Me',color:'#16a085',tagClass:'tag-me',cardClass:'card-me'}
 };
 
-/* Hauptmodul: Innenangriff Variante III Stufe 2–6, Ablauf mit Tank */
-const PHASES_EINSATZ = [
+const PHASES = [
   {
-    num:'1',
-    name:'Antreten & Einsatzbefehl',
+    num:'01', name:'Ausgangsstellung',
     steps:[
-      {
-        role:'sr',
-        text:`<strong>Stufenhinweis:</strong> Bei Stufe 1 werden Funktionen fest vergeben. Ab Stufe 2 werden Funktionen (AT, WT, ST, Me) ausgelost, GF beantwortet Testfragen – hier nur als Hinweis, keine Detaildarstellung.`
-      },
-      {
-        role:'gf',
-        text:`<strong>Antreten & Meldung:</strong>
+      { role:'at', text:`
         <ol class="seq">
-          <li><span class="sn">1</span>Gibt Kommando: <span class="cmd">„Gruppe zur Leistungsprüfung antreten!“</span></li>
-          <li><span class="sn">2</span>Meldet an SR1: <span class="cmd">„Gruppe der Freiwilligen Feuerwehr … zur Leistungsprüfung angetreten!“</span></li>
+          <li><span class="seq-num">1</span>AT tritt bereits mit <strong>aufgenommenem Atemschutzgerät</strong> und ergänzender Schutzausrüstung an.</li>
+          
+        </ol>` }
+    ]
+  },
+  {
+    num:'02', name:'Lagemeldung & erster Einsatzbefehl',
+    steps:[
+      { role:'gf', text:`
+        <ol class="seq">
+          <li><span class="seq-num">1</span>Gibt Lageschilderung und Einsatzbefehl.</li>
+          <li><span class="seq-num">2</span>Erkundet weiter.</li>
+          <li><span class="seq-num">3</span>Führt, wenn nicht anders befohlen, die <strong>Atemschutzüberwachung</strong> durch.</li>
         </ol>
-        <strong>Lage & Einsatzbefehl (HLF, Oberflurhydrant):</strong>
+        <span class="cmd">„Zimmerbrand im Erdgeschoss,
+keine Menschen und Tiere in Gefahr
+Wasserentnahmestelle der …hydrant
+Lage des Verteilers …”</span>
+        <span class="cmd">„Schlauchtrupp
+zur Absicherung der Einsatzstelle
+mit Warndreiecken und Warnleuchten
+je 30 m vor dem Löschfahrzeug und dem …hydrant”</span>
+        <span class="cmd">„Zum Einsatz fertig!”</span>` },
+      { role:'st', text:`Rüstet sich zur <strong>Verkehrsabsicherung</strong> mit Warndreiecken und Warnleuchten aus.` },
+      { role:'me', text:`Geht zum <strong>Gruppenführer</strong> und arbeitet auf dessen Weisung.` }
+    ]
+  },
+  {
+    num:'03', name:'Maschinist – Fahrzeug & Pumpe',
+    steps:[
+      { role:'ma', text:`
         <ol class="seq">
-          <li><span class="sn">3</span>Lage: <span class="cmd">„Zimmerbrand im Erdgeschoss, keine Menschen und Tiere in Gefahr.“</span></li>
-          <li><span class="sn">4</span>Wasser: <span class="cmd">„Wasserentnahmestelle: Oberflurhydrant.“</span></li>
-          <li><span class="sn">5</span>Verteiler: <span class="cmd">„Verteiler an der markierten Stelle.“</span></li>
-          <li><span class="sn">6</span>Absicherung: <span class="cmd">„Schlauchtrupp zur Verkehrsabsicherung mit Warndreiecken und Warnleuchten je 30 m vor dem HLF und dem Hydranten.“</span></li>
-          <li><span class="sn">7</span>Startkommando: <span class="cmd">„Zum Einsatz fertig!“</span></li>
+          <li><span class="seq-num">1</span>Startet den <strong>Motor</strong> vom Fahrersitz.</li>
+          <li><span class="seq-num">2</span>Sichert das LF mit <strong>Warnblinkanlage, Fahrlicht und blauem Blinklicht</strong>, ggf. Heckwarnsystem und Umfeldbeleuchtung.</li>
+          <li><span class="seq-num">3</span>Nimmt Blindkupplungen der Druckabgänge ab, soweit erforderlich.</li>
+          <li><span class="seq-num">4</span>Kuppelt die Leitung zum <strong>Schnellangriffsverteiler</strong> an die Pumpe.</li>
+          <li><span class="seq-num">5</span>Nimmt die <strong>Feuerlöschkreiselpumpe</strong> in Betrieb.</li>
+          <li><span class="seq-num">6</span>Achtet auf maximal <strong>8 bar</strong>.</li>
+        </ol>` }
+    ]
+  },
+  {
+    num:'04', name:'Angriffstrupp – ausrüsten & Verteiler setzen',
+    steps:[
+      { role:'at', text:`
+        <ol class="seq">
+          <li><span class="seq-num">1</span>ATF wiederholt: <span class="cmd">„Zum Einsatz fertig!”</span></li>
+          <li><span class="seq-num">2</span>Rüstet sich aus mit <strong>Beleuchtungsgerät, Strahlrohr, Feuerwehraxt oder Hebelwerkzeug und mindestens zwei C-Schläuchen</strong>.</li>
+          <li><span class="seq-num">3</span>Lässt sich bei der <strong>Atemschutzüberwachung</strong> registrieren.</li>
+          <li><span class="seq-num">4</span>Setzt den <strong>Schnellangriffsverteiler</strong>.</li>
+          <li><span class="seq-num">5</span>Meldet an den Maschinisten: <span class="cmd">„Wasser marsch!”</span></li>
+          <li><span class="seq-num">6</span>Meldet dem Gruppenführer: <span class="cmd">„Angriffstrupp einsatzbereit!”</span></li>
+        </ol>` }
+    ]
+  },
+  {
+    num:'05', name:'GF-Befehl 1. Rohr',
+    steps:[
+      { role:'gf', text:`Gibt sofort nach Meldung <strong>„Angriffstrupp einsatzbereit!”</strong> den Befehl:<br>
+        <span class="cmd">„Angriffstrupp
+zum Umspritzen des linken Eimers
+1. Rohr
+zur linken markierten Linie
+über den Platz
+vor!”</span>` },
+      { role:'at', text:`
+        <ol class="seq">
+          <li><span class="seq-num">1</span>ATF wiederholt den Befehl.</li>
+          <li><span class="seq-num">2</span>ATF meldet per Funk die <strong>Fülldrücke</strong> beider Truppmitglieder.</li>
+          <li><span class="seq-num">3</span>Kuppelt die <strong>C-Leitung links</strong> am Verteiler an.</li>
+          <li><span class="seq-num">4</span>Verlegt die C-Leitung in <strong>Buchten</strong>.</li>
+          <li><span class="seq-num">5</span>Kuppelt das <strong>Strahlrohr</strong> an.</li>
+          <li><span class="seq-num">6</span>ATF kommandiert: <span class="cmd">„1. Rohr Wasser marsch!”</span></li>
         </ol>
-        GF erkundet die Lage weiter und übernimmt die <strong>Atemschutzüberwachung</strong> (Tafel, Funk).`
-      },
-      {
-        role:'me',
-        text:`Geht zum Gruppenführer, unterstützt bei <strong>Atemschutzüberwachung</strong> und Funk (Eintrag Fülldrücke, Zeiten, Rückmeldungen der Trupps).`
-      }
+        <span class="cond">⚠ Der Angriffstrupp wartet ab hier auf die tatsächliche Freigabe des 1. Rohres.</span>` }
     ]
   },
   {
-    num:'2',
-    name:'Fahrzeug sichern & Absichern',
+    num:'06', name:'Wassertrupp – Hydrant & Sicherheitstrupp',
+    hint:'Nur Aufbau mit Tank: WT braucht nur 1x B zum Hydranten. Hydrant wird mit Kugelhahn gespült, Systemtrenner wird eingebaut.',
     steps:[
-      {
-        role:'ma',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>Startet Motor des HLF vom Fahrersitz.</li>
-          <li><span class="sn">2</span>Sichert das HLF: Warnblinker, Fahrlicht, Blaulicht, ggf. Heckwarnsystem und Umfeldbeleuchtung.</li>
-          <li><span class="sn">3</span>Nimmt Blindkupplungen der Druckabgänge ab (sofern keine automatische Druckentlastung vorhanden).</li>
-          <li><span class="sn">4</span>Kuppelt benötigte <strong>B-Leitungen</strong> an die Pumpe.</li>
-          <li><span class="sn">5</span>Nimmt die Feuerlöschkreiselpumpe in Betrieb, steuert Ausgangsdruck (max. 8 bar).</li>
-        </ol>`
-      },
-      {
-        role:'st',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>Rüstet aus: <strong>Warndreiecke und Warnleuchten</strong>.</li>
-          <li><span class="sn">2</span>Stellt je ein Warndreieck und eine Warnleuchte ca. 30 m vor dem HLF und vor dem Hydranten auf.</li>
-          <li><span class="sn">3</span>Stellt sich anschließend am <strong>Verteilerstandort</strong> bereit.</li>
-          <li><span class="sn">4</span>STF meldet an GF: <span class="cmd">„Schlauchtrupp einsatzbereit!“</span></li>
-        </ol>`
-      }
-    ]
-  },
-  {
-    num:'3',
-    name:'Angriffstrupp – Vorbereitung & Verteiler',
-    steps:[
-      {
-        role:'at',
-        text:`ATF wiederholt Kommando des GF: <span class="cmd">„Zum Einsatz fertig!“</span>
+      { role:'wt', text:`
         <ol class="seq">
-          <li><span class="sn">1</span>Rüstet aus: <strong>Halligan-Tool · C-Schlauchtragekorb (3 C, Nutzung von 2) · Strahlrohr · Handfunkgerät</strong>.</li>
-          <li><span class="sn">2</span>ATF und ATM lassen sich beim Gruppenführer in der <strong>Atemschutzüberwachung</strong> mit Flaschendruck eintragen.</li>
-          <li><span class="sn">3</span>Setzen an der markierten Stelle den <strong>Schnellangriffsverteiler mit angekuppeltem B-Schlauch</strong>.</li>
-          <li><span class="sn">4</span>ATF meldet an GF: <span class="cmd">„Angriffstrupp einsatzbereit!“</span></li>
-        </ol>`
-      }
+          <li><span class="seq-num">1</span>Verlegt <strong>eine B-Leitung</strong> vom Fahrzeug zum Hydranten.</li>
+          <li><span class="seq-num">2</span>Spült den <strong>Hydranten mit Kugelhahn</strong>.</li>
+          <li><span class="seq-num">3</span>Baut den <strong>Systemtrenner</strong> ein.</li>
+          <li><span class="seq-num">4</span>Nimmt den Hydranten in Betrieb.</li>
+          <li><span class="seq-num">5</span>Rüstet sich als <strong>Sicherheitstrupp</strong> nach FwDV 7 aus.</li>
+          <li><span class="seq-num">6</span>Lässt sich bei der Atemschutzüberwachung registrieren.</li>
+          <li><span class="seq-num">7</span>Legt die Geräte am Verteiler ab.</li>
+          <li><span class="seq-num">8</span>Kuppelt den <strong>C-Schlauch rechts</strong> am Verteiler an.</li>
+          <li><span class="seq-num">9</span>Stellt sich am Verteiler als <strong>Sicherheitstrupp</strong> bereit.</li>
+          <li><span class="seq-num">10</span>WTF meldet dem GF: <span class="cmd">„Wassertrupp als Sicherheitstrupp einsatzbereit!”</span></li>
+        </ol>` }
     ]
   },
   {
-    num:'4',
-    name:'Wassertrupp – Oberflurhydrant & Fahrzeugversorgung',
+    num:'07', name:'Schlauchtrupp – Absicherung & Freigabe',
     steps:[
-      {
-        role:'wt',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>Rüstet aus: <strong>Hydrantenschlüssel für Oberflurhydrant · 1 B-Schlauch</strong>.</li>
-          <li><span class="sn">2</span>Verlegt <strong>eine B-Leitung</strong> vom HLF zum <strong>Oberflurhydranten</strong>.</li>
-          <li><span class="sn">3</span>Öffnet Oberflurhydrant und Kugelhahn, spült kurz, setzt den <strong>Systemtrenner</strong> ein und nimmt den Hydranten in Betrieb.</li>
-        </ol>`
-      }
-    ]
-  },
-  {
-    num:'5',
-    name:'Sicherungstrupp – Aufbau & Funk',
-    steps:[
-      {
-        role:'wt',
-        text:`Wassertrupp rüstet sich als <strong>Sicherungstrupp</strong> aus:
+      { role:'st', text:`
         <ol class="seq">
-          <li><span class="sn">1</span>Ausrüstung: <strong>Beleuchtungsgerät · Feuerwehrleine · Rettungstuch · Handfunkgerät · Strahlrohr · mindestens 2 C-Schläuche · Feuerwehraxt</strong>.</li>
-          <li><span class="sn">2</span>WTF und WTM lassen sich beim Gruppenführer in der <strong>Atemschutzüberwachung</strong> mit aktuellem Flaschendruck eintragen.</li>
-          <li><span class="sn">3</span>Legt Sicherungstrupp-Ausrüstung am Verteiler bereit · kuppelt <strong>C-Schlauch rechts</strong> am Verteiler an.</li>
-          <li><span class="sn">4</span>Stellt sich als Sicherungstrupp am Verteiler bereit.</li>
-          <li><span class="sn">5</span>WTF meldet laut und per Funk an GF / ATS: <span class="cmd">„Wassertrupp als Sicherungstrupp einsatzbereit!“</span></li>
-        </ol>`
-      },
-      {
-        role:'gf',
-        text:`GF bestätigt über Funk an ATF: <span class="cmd">„Sicherungstrupp einsatzbereit – Innenangriff kann beginnen.“</span>`
-      }
+          <li><span class="seq-num">1</span>Stellt Warndreiecke und Warnleuchten auf: <strong>30 m vom LF</strong> und <strong>30 m vom Hydranten</strong>.</li>
+          <li><span class="seq-num">2</span>Stellt sich am <strong>Verteiler</strong> bereit.</li>
+          <li><span class="seq-num">3</span>STF meldet dem GF: <span class="cmd">„Schlauchtrupp einsatzbereit!”</span></li>
+          <li><span class="seq-num">4</span>STF bedient den Verteiler.</li>
+          <li><span class="seq-num">5</span>STM übernimmt die <strong>Schlauchaufsicht</strong>.</li>
+        </ol>
+        <span class="cond">⚠ STF öffnet das 1. Rohr erst, wenn der WT als Sicherheitstrupp bereit und gemeldet ist.</span>` }
     ]
   },
   {
-    num:'6',
-    name:'1. Rohr – Befehl & Wasser marsch',
+    num:'08', name:'Angriffstrupp geht jetzt vor',
+    hint:'Harte Ablauftrennung: AT darf erst vorgehen, nachdem WT als Sicherheitstrupp bereit und gemeldet ist – weil erst dann der ST das 1. Rohr öffnet.',
     steps:[
-      {
-        role:'gf',
-        text:`Gibt den Befehl an AT:
-        <span class="cmd">„Angriffstrupp – zum Umspritzen des linken Eimers – 1. Rohr – zur linken markierten Linie – über den Platz – vor!“</span>`
-      },
-      {
-        role:'at',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>ATF wiederholt Befehl laut: <span class="cmd">„Angriffstrupp – zum Umspritzen des linken Eimers – 1. Rohr – zur linken markierten Linie – über den Platz – vor!“</span></li>
-          <li><span class="sn">2</span>ATF meldet Fülldruck an GF: <span class="cmd">„Fülldruck 200 bar!“</span></li>
-          <li><span class="sn">3</span>Kuppelt <strong>C-Leitung links</strong> am Schnellangriffsverteiler an.</li>
-          <li><span class="sn">4</span>Verlegt C-Leitung in <strong>Buchten</strong> bis kurz vor die markierte Linie.</li>
-          <li><span class="sn">5</span>Kuppelt <strong>Strahlrohr</strong> an die C-Leitung an.</li>
-          <li><span class="sn">6</span>ATF kommandiert klar: <span class="cmd">„1. Rohr Wasser marsch!“</span></li>
-        </ol>`
-      },
-      {
-        role:'st',
-        text:`STF öffnet <strong>1. Rohr am Verteiler</strong>.
-        <span class="cond">Für den Innenangriff: Sicherungstrupp (WT) muss einsatzbereit am Verteiler stehen und gemeldet haben, bevor der Angriffstrupp unter Atemschutz in den Innenangriff vorgeht.</span>
-        STM übernimmt Schlauchaufsicht auf der C-Leitung zum 1. Rohr.`
-      }
-    ]
-  },
-  {
-    num:'7',
-    name:'AT – Innenangriff & Umspritzen 1. Rohr',
-    steps:[
-      {
-        role:'at',
-        text:`Nach Öffnen des 1. Rohrs (Sicherungstrupp steht bereit):
+      { role:'at', text:`
         <ol class="seq">
-          <li><span class="sn">1</span>ATF meldet per Funk an GF / ATS: <span class="cmd">„Lungenautomat angeschlossen!“</span></li>
-          <li><span class="sn">2</span>AT überschreitet die markierte Linie (max. 1 m).</li>
-          <li><span class="sn">3</span>ATF meldet per Funk: <span class="cmd">„Einsatzort erreicht!“</span></li>
-          <li><span class="sn">4</span>Umspritzt den <strong>linken Eimer</strong>, schließt danach das Strahlrohr.</li>
-          <li><span class="sn">5</span>ATF meldet an GF: <span class="cmd">„Angriffstrupp Befehl ausgeführt!“</span></li>
-        </ol>`
-      }
+          <li><span class="seq-num">1</span>Nach Öffnung des 1. Rohres meldet ATF per Funk: <span class="cmd">„Lungenautomat angeschlossen!”</span></li>
+          <li><span class="seq-num">2</span>Erst jetzt übertritt der AT die markierte Linie (<strong>max. 1 m</strong>).</li>
+          <li><span class="seq-num">3</span>ATF meldet dem GF: <span class="cmd">„Einsatzort erreicht!”</span></li>
+          <li><span class="seq-num">4</span>Umspritzt den <strong>linken Eimer</strong>.</li>
+          <li><span class="seq-num">5</span>Schließt das Strahlrohr sofort danach.</li>
+          <li><span class="seq-num">6</span>ATF meldet dem GF: <span class="cmd">„Angriffstrupp Befehl ausgeführt!”</span></li>
+        </ol>` },
+      { role:'gf', text:`Gibt die weiteren Befehle erst nach dieser Freigabe- und Vorgehenslogik.` }
     ]
   },
   {
-    num:'8',
-    name:'3. Rohr – Schlauchtrupp außen',
+    num:'09', name:'Befehl an den Schlauchtrupp – 3. Rohr',
     steps:[
-      {
-        role:'gf',
-        text:`Gibt Befehl an ST:
-        <span class="cmd">„Schlauchtrupp – zum Umspritzen des rechten Eimers – 3. Rohr – zur rechten markierten Linie – über den Platz – vor!“</span><br>
-        Danach an Me: <span class="cmd">„Melder bedient den Verteiler!“</span>`
-      },
-      {
-        role:'me',
-        text:`Melder übernimmt den <strong>Verteiler</strong> und die <strong>Schlauchaufsicht</strong> für das 3. Rohr.`
-      },
-      {
-        role:'st',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>STF wiederholt Befehl laut: <span class="cmd">„Schlauchtrupp – zum Umspritzen des rechten Eimers – 3. Rohr – zur rechten markierten Linie – über den Platz – vor!“</span></li>
-          <li><span class="sn">2</span>Rüstet aus: <strong>Beleuchtungsgerät · Strahlrohr · mindestens 2 C-Schläuche</strong>.</li>
-          <li><span class="sn">3</span>Kuppelt <strong>C-Leitung mittig</strong> am Verteiler an.</li>
-          <li><span class="sn">4</span>Verlegt C-Leitung in Buchten zur rechten markierten Linie.</li>
-          <li><span class="sn">5</span>Kuppelt Strahlrohr an die C-Leitung.</li>
-          <li><span class="sn">6</span>STF kommandiert: <span class="cmd">„3. Rohr Wasser marsch!“</span></li>
-          <li><span class="sn">7</span>Umspritzt den <strong>rechten Eimer</strong>, schließt danach das Strahlrohr.</li>
-          <li><span class="sn">8</span>STF meldet an GF: <span class="cmd">„Schlauchtrupp Befehl ausgeführt!“</span></li>
-        </ol>`
-      }
-    ]
-  },
-  {
-    num:'9',
-    name:'Zeitstopp, Motor aus & Kontrolle',
-    steps:[
-      {
-        role:'sr',
-        text:`<strong>Zeitstop:</strong> Alle Strahlrohre geschlossen, AT und ST haben <span class="cmd">„Befehl ausgeführt!“</span> gemeldet. Höchstzeit laut Richtlinie: <strong>300 s</strong> (je weitere B-Länge +10 s).`
-      },
-      {
-        role:'sr',
-        text:`SR1 gibt Kommando: <span class="cmd">„Motor aus!“</span>`
-      },
-      {
-        role:'ma',
-        text:`Stellt Motor ab, schaltet Warn- und Beleuchtungseinrichtungen aus (sofern von Schiedsrichtern nicht anders gefordert).`
-      },
-      {
-        role:'sr',
-        text:`Schiedsrichter kontrollieren Aufbau <strong>von vorne nach hinten</strong>:
-        SR2: Strahlrohre bis Verteiler · SR1: Verteiler bis Wasserentnahme. GF begleitet und beantwortet Fragen.`
-      }
-    ]
-  }
-];
-
-/* Block: Einzel-/Truppaufgaben Stufe 1–6 */
-const STUFEN = ['1','2','3','4','5','6'];
-let currentStufe = '1';
-
-const STUFEN_INHALT = {
-  '1': [
-    {
-      role:'sr',
-      text:`<strong>Stufe 1:</strong> Keine Zusatzaufgaben. Funktionen werden vor der Abnahme fest vergeben. Knoten & Stiche für alle Funktionen werden gezeigt.`
-    }
-  ],
-  '2': [
-    {
-      role:'sr',
-      text:`<strong>Stufe 2:</strong> Funktionen AT, WT, ST, Me werden ausgelost. GF beantwortet Testfragen (Inhalt hier nicht dargestellt). Keine zusätzlichen Mannschaftsaufgaben.`
-    }
-  ],
-  '3': [
-    {
-      role:'sr',
-      text:`<strong>Stufe 3:</strong> Zusatzaufgabe <strong>Gerätekunde</strong> für Mannschaft (außer GF). Zwei ausgeloste Geräte im Fahrzeug bei geschlossenem Geräteraum sicher benennen.`
-    }
-  ],
-  '4': [
-    {
-      role:'sr',
-      text:`<strong>Stufe 4:</strong> Zusatzaufgabe <strong>Erste Hilfe</strong> für Mannschaft (außer GF). Eine von vier Aufgaben wird gewählt (Betreuung, Vitalfunktionen, Verbrennung, Schock).`
-    }
-  ],
-  '5': [
-    {
-      role:'sr',
-      text:`<strong>Stufe 5:</strong> Zusatzaufgabe <strong>Gefahrgut- und Hinweiszeichen</strong> für Mannschaft (außer GF). Zwei ausgeloste Zeichen erkennen und benennen.`
-    }
-  ],
-  '6': [
-    {
-      role:'sr',
-      text:`<strong>Stufe 6:</strong> Zusatzaufgabe <strong>schriftliche Testfragen</strong> für Mannschaft (außer GF). Ein Testbogen mit 10 Fragen, Bearbeitungszeit max. 5 min, ohne Hilfsmittel.`
-    }
-  ]
-};
-
-const PHASES_KNOTEN = [
-  {
-    num:'K1',
-    name:'Knoten & Stiche – alle Stufen',
-    steps:[
-      {
-        role:'sr',
-        text:`Knoten und Stiche werden bei jeder Stufe gezeigt. Kommando SR2: <span class="cmd">„Zur Übung fertig!“</span>, Zeitnehmer und SR2 stoppen Zeit. Ein Versuch.`
-      },
-      {
-        role:'ma',
-        text:`<strong>Maschinist:</strong> Zimmermannsschlag an Holm oder Anhängerdeichsel · Höchstzeit: <strong>15 s</strong>.`
-      },
-      {
-        role:'me',
-        text:`<strong>Melder:</strong> Mastwurf gestochen mit Sicherung durch Spierenstich an Holm o. ä. · Höchstzeit: <strong>15 s</strong>.`
-      },
-      {
-        role:'at',
-        text:`<strong>Angriffstruppführer & -mann:</strong> Gegenseitig je ein Brustbund mit Sicherung durch Spierenstich · Höchstzeit: <strong>40 s</strong>.`
-      },
-      {
-        role:'wt',
-        text:`<strong>Wassertruppführer & -mann:</strong> Je ein Halbmastwurf an der Öse des Feuerwehr-Sicherheits- oder Haltegurtes · Höchstzeit: <strong>15 s</strong>.`
-      },
-      {
-        role:'st',
-        text:`<strong>Schlauchtruppführer & -mann:</strong> Je ein Mastwurf gelegt mit Halbschlag an C-Strahlrohr mit Schlauch · Höchstzeit: <strong>15 s</strong>.`
-      }
-    ]
-  }
-];
-
-/* Block: Saugleitung & Trockensaugprobe nach Trupp */
-const PHASES_SAUG = [
-  {
-    num:'S1',
-    name:'Kuppeln einer Saugleitung (4 Saugschläuche)',
-    steps:[
-      {
-        role:'sr',
-        text:`SR1 legt die Höchstzeit fest. SR2 gibt Kommando <span class="cmd">„Zur Übung fertig!“</span>. Zeit läuft mit dem ersten Handgriff.`
-      },
-      {
-        role:'ma',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>Nimmt Blindkupplung am Sauganschluss der Pumpe ab.</li>
-          <li><span class="sn">2</span>Hält Saugkorb und Saugschutzkorb bereit.</li>
-        </ol>`
-      },
-      {
-        role:'at',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>ATF und ATM holen zwei Saugschläuche.</li>
-          <li><span class="sn">2</span>Kuppeln die Saugschläuche untereinander mit Kupplungsschlüsseln.</li>
-        </ol>`
-      },
-      {
-        role:'wt',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>WTF und WTM holen zwei weitere Saugschläuche.</li>
-          <li><span class="sn">2</span>Kuppeln die restlichen Saugschläuche an.</li>
-          <li><span class="sn">3</span>Kuppeln Saugkorb und Saugschutzkorb an den freien Saugschlauch.</li>
-        </ol>`
-      },
-      {
-        role:'st',
-        text:`Schlauchtrupp unterstützt beim Schwenken der fertigen Saugleitung zur Pumpe, ggf. mit <strong>Halte- und Anleinen</strong> (je nach örtlicher Übung).`
-      },
-      {
-        role:'ma',
-        text:`Kuppelt fertige Saugleitung an den Sauganschluss der Pumpe an, prüft alle Kupplungen optisch.`
-      }
-    ]
-  },
-  {
-    num:'S2',
-    name:'Trockensaugprobe',
-    steps:[
-      {
-        role:'ma',
-        text:`<ol class="seq">
-          <li><span class="sn">1</span>Bedient Entlüftungseinrichtung der Pumpe (je nach Typ).</li>
-          <li><span class="sn">2</span>Lässt Pumpe Wasser saugen, bis vorgeschriebener Unterdruck erreicht ist.</li>
-          <li><span class="sn">3</span>Überwacht Unterdruckhaltung über vorgegebene Zeit (kein wesentlicher Druckabfall).</li>
-        </ol>`
-      },
-      {
-        role:'wt',
-        text:`Unterstützt Ma: sichert Saugkorb, achtet auf Undichtigkeiten (Luftblasen, Geräusche) und meldet Auffälligkeiten.`
-      },
-      {
-        role:'sr',
-        text:`SR kontrolliert Unterdruckwert und Zeit, bewertet Dichtheit der Saugleitung und trägt Ergebnis in den Bewertungsbogen ein.`
-      }
+      { role:'gf', text:`Gibt sofort nachdem das 1. Rohr geöffnet wurde den Befehl:<br>
+        <span class="cmd">„Schlauchtrupp
+zum Umspritzen des rechten Eimers
+3. Rohr
+zur rechten markierten Linie
+über den Platz
+vor!”</span><br>
+        Danach: <span class="cmd">„Melder bedient den Verteiler!”</span>` },
+      { role:'me', text:`Wiederholt den Befehl, bedient den <strong>Verteiler</strong> und übernimmt die <strong>Schlauchaufsicht</strong>.` },
+      { role:'st', text:`
+        <ol class="seq">
+          <li><span class="seq-num">1</span>STF wiederholt den Befehl:<br><span class="cmd">„Schlauchtrupp
+zum Umspritzen des rechten Eimers
+3. Rohr
+zur rechten markierten Linie
+über den Platz
+vor!”</span></li>
+          <li><span class="seq-num">2</span>Rüstet sich mit <strong>Beleuchtungsgerät, Strahlrohr und mindestens zwei C-Schläuchen</strong> aus.</li>
+          <li><span class="seq-num">3</span>Kuppelt die <strong>C-Leitung mittig</strong> am Verteiler an.</li>
+          <li><span class="seq-num">4</span>Verlegt die C-Leitung in <strong>Buchten</strong>.</li>
+          <li><span class="seq-num">5</span>Kuppelt das Strahlrohr an.</li>
+          <li><span class="seq-num">6</span>STF kommandiert: <span class="cmd">„3. Rohr Wasser marsch!”</span></li>
+          <li><span class="seq-num">7</span>Umspritzt den <strong>rechten Eimer</strong> und schließt danach sofort das Strahlrohr.</li>
+          <li><span class="seq-num">8</span>STF meldet dem GF: <span class="cmd">„Schlauchtrupp Befehl ausgeführt!”</span></li>
+        </ol>` }
     ]
   }
 ];
 
 let currentRole = null;
 
-function setRole(role){
+function selectRole(role) {
   currentRole = role;
-  document.getElementById('start').style.display = 'none';
-  document.getElementById('main').style.display = 'flex';
-  const tag = document.getElementById('roleTag');
-  if(role === 'all'){
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('main-screen').style.display = 'flex';
+
+  const tag = document.getElementById('role-tag');
+  if (role === 'all') {
     tag.textContent = 'Alle Funktionen';
     tag.style.background = '#444';
-  }else{
+  } else {
     const r = ROLES[role];
     tag.textContent = r.label;
-    tag.style.background =
-      role === 'gf' ? '#2471a3' :
-      role === 'at' ? '#C0392B' :
-      role === 'wt' ? '#1e8449' :
-      role === 'st' ? '#e67e22' :
-      role === 'ma' ? '#8e44ad' :
-      role === 'me' ? '#16a085' : '#555';
+    tag.style.background = r.color;
   }
-  document.getElementById('topInfo').innerHTML =
-    'Innenangriff · Stufen 1–6<br>' +
-    (role === 'all' ? 'Alle Rollen sichtbar' : 'Nur deine Aufgaben');
+
+  document.getElementById('topbar-info').innerHTML = role === 'all' ? 'Gesamter Ablauf<br>sichtbar' : 'Nur deine Schritte<br>sichtbar';
   renderContent();
 }
 
-function goBack(){
-  document.getElementById('main').style.display = 'none';
-  document.getElementById('start').style.display = 'flex';
+function goBack() {
+  document.getElementById('main-screen').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'flex';
   currentRole = null;
 }
 
-/* Rendering */
+function renderContent() {
+  const container = document.getElementById('content');
+  container.innerHTML = '';
 
-function renderSection(title, sub, phases){
-  const wrap = document.createElement('div');
-  const h = document.createElement('div');
-  h.className = 'block-title';
-  h.textContent = title;
-  wrap.appendChild(h);
-  if(sub){
-    const s = document.createElement('div');
-    s.className = 'block-sub';
-    s.innerHTML = sub;
-    wrap.appendChild(s);
-  }
+  PHASES.forEach(phase => {
+    const mySteps = currentRole === 'all' ? phase.steps : phase.steps.filter(s => s.role === currentRole);
+    const hasContent = mySteps.length > 0;
 
-  phases.forEach(ph=>{
-    const steps = currentRole === 'all'
-      ? ph.steps
-      : ph.steps.filter(s=>s.role === currentRole);
-    const has = steps.length>0;
+    const phaseEl = document.createElement('div');
+    phaseEl.className = 'phase';
 
-    const phDiv = document.createElement('div');
-    phDiv.className = 'phase';
-
-    const head = document.createElement('div');
-    head.className = 'ph-head'+(has?' has open':'');
-    head.innerHTML =
-      '<span class="ph-num">'+ph.num+'</span>'+
-      '<span class="ph-name">'+ph.name+'</span>'+
-      (has
-        ? '<span class="ph-badge">'+steps.length+' Aufgabe'+(steps.length!==1?'n':'')+'</span><span class="chevron">▶</span>'
-        : '<span class="ph-badge">–</span>');
-    phDiv.appendChild(head);
+    const header = document.createElement('div');
+    header.className = 'phase-header' + (hasContent ? ' has-content open' : '');
+    header.innerHTML = `
+      <span class="phase-num">${phase.num}</span>
+      <span class="phase-name">${phase.name}</span>
+      ${hasContent
+        ? `<span class="phase-badge">${mySteps.length} Schritt${mySteps.length !== 1 ? 'e' : ''}</span><span class="chevron">▶</span>`
+        : `<span class="phase-badge">–</span>`}
+    `;
 
     const body = document.createElement('div');
-    body.className = 'ph-body'+(has?' open':'');
-    if(has){
-      if(ph.hint){
-        const hi = document.createElement('div');
-        hi.className = 'hint';
-        hi.innerHTML = ph.hint;
-        body.appendChild(hi);
+    body.className = 'phase-body' + (hasContent ? ' open' : '');
+
+    if (hasContent) {
+      if (phase.hint) {
+        const h = document.createElement('div');
+        h.className = 'hint-text';
+        h.innerHTML = phase.hint;
+        body.appendChild(h);
       }
-      const allSteps = currentRole === 'all' ? ph.steps : steps;
-      allSteps.forEach(s=>{
-        const r = ROLES[s.role] || ROLES.sr;
-        const st = document.createElement('div');
-        st.className = 'step '+r.cls;
-        st.innerHTML =
-          '<span class="tag '+r.tag+'">'+r.short+'</span>'+
-          '<div class="txt">'+s.text+'</div>';
-        body.appendChild(st);
+
+      const toShow = currentRole === 'all' ? phase.steps : mySteps;
+      toShow.forEach(step => {
+        const r = ROLES[step.role];
+        const card = document.createElement('div');
+        card.className = `step-card ${r.cardClass}`;
+        card.innerHTML = `<span class="rolle-tag ${r.tagClass}">${r.short}</span><div class="step-text">${step.text}</div>`;
+        body.appendChild(card);
       });
-      head.addEventListener('click',()=>{
-        head.classList.toggle('open');
+
+      header.addEventListener('click', () => {
+        header.classList.toggle('open');
         body.classList.toggle('open');
       });
     }
-    phDiv.appendChild(body);
-    wrap.appendChild(phDiv);
+
+    phaseEl.appendChild(header);
+    phaseEl.appendChild(body);
+    container.appendChild(phaseEl);
   });
-
-  return wrap;
-}
-
-function setStufe(st){
-  currentStufe = st;
-  renderContent();
-}
-
-function renderContent(){
-  const c = document.getElementById('content');
-  c.innerHTML = '';
-
-  /* Hauptmodul Einsatz */
-  c.appendChild(renderSection(
-    'Innenangriff – Einsatzablauf Stufe 2–6',
-    'Ablauf der Einsatzübung Variante III mit HLF und Wassertank (ohne Losdetails, ohne Inhalt der Testfragen).',
-    PHASES_EINSATZ
-  ));
-
-  const div1 = document.createElement('div');
-  div1.className = 'block-divider';
-  c.appendChild(div1);
-
-  /* Block Stufen/Einzelaufgaben */
-  const stBlock = document.createElement('div');
-  const stTitle = document.createElement('div');
-  stTitle.className = 'block-title';
-  stTitle.textContent = 'Einzel- und Truppaufgaben Stufe 1–6';
-  stBlock.appendChild(stTitle);
-
-  const stSub = document.createElement('div');
-  stSub.className = 'block-sub';
-  stSub.textContent = 'Tippe deine Stufe an, um zu sehen, was zusätzlich zu Knoten & Stichen verlangt wird.';
-  stBlock.appendChild(stSub);
-
-  const btnRow = document.createElement('div');
-  btnRow.className = 'stufe-buttons';
-  STUFEN.forEach(st=>{
-    const b = document.createElement('button');
-    b.className = 'stufe-btn'+(st===currentStufe?' active':'');
-    b.textContent = 'Stufe '+st;
-    b.onclick = ()=>setStufe(st);
-    btnRow.appendChild(b);
-  });
-  stBlock.appendChild(btnRow);
-
-  const stPhases = [];
-  stPhases.push({
-    num:'E'+currentStufe,
-    name:'Stufenspezifische Aufgaben',
-    steps: STUFEN_INHALT[currentStufe]
-  });
-  PHASES_KNOTEN.forEach(ph=>stPhases.push(ph));
-
-  stBlock.appendChild(renderSection('', '', stPhases));
-  c.appendChild(stBlock);
-
-  const div2 = document.createElement('div');
-  div2.className = 'block-divider';
-  c.appendChild(div2);
-
-  /* Block Saugleitung & Trockensaugprobe */
-  c.appendChild(renderSection(
-    'Saugleitung & Trockensaugprobe',
-    'Diese Übungen werden für alle Stufen nach Abschluss der Einsatzübung durchgeführt.',
-    PHASES_SAUG
-  ));
-
-  if(currentRole && currentRole!=='all'){
-    const anyE = PHASES_EINSATZ.some(p=>p.steps.some(s=>s.role===currentRole));
-    const anyK = PHASES_KNOTEN.some(p=>p.steps.some(s=>s.role===currentRole));
-    const anyZ = PHASES_SAUG.some(p=>p.steps.some(s=>s.role===currentRole));
-    if(!anyE && !anyK && !anyZ){
-      c.innerHTML =
-        '<div class="no"><div class="ic">✓</div><h2>Keine Aufgaben</h2>'+
-        '<p>Für diese Funktion sind in dieser Variante keine Aufgaben hinterlegt.</p></div>';
-    }
-  }
 }
 </script>
 </body>
